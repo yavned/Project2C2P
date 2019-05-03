@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project2C2P.Models;
 using Project2C2P.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Project2C2P
 {
@@ -28,6 +29,11 @@ namespace Project2C2P
             var connectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(connectionString));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Project2C2P", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +55,13 @@ namespace Project2C2P
                 });
             }
 
-            //app.UseHttpsRedirection();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project2C2P V1");
+            });
+
             app.UseMvc();
         }
     }
