@@ -35,7 +35,7 @@ namespace Project2C2P.Services
             };
         }
 
-        public async Task<InquiryView> GetByemail(string email)
+        public async Task<InquiryView> GetByEmail(string email)
         {
             var customer = await _context.Customers.Where(x => x.Email == email).FirstOrDefaultAsync();
 

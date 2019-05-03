@@ -32,7 +32,7 @@ namespace Project2C2P.Controllers
 
             if (!String.IsNullOrEmpty(email))
             {
-                InquiryView result = await _service.GetByemail(email);
+                InquiryView result = await _service.GetByEmail(email);
 
                 if (result != null)
                     return Ok(result);

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project2C2P.Models;
+using Project2C2P.Services;
 
 namespace Project2C2P
 {
@@ -20,6 +21,8 @@ namespace Project2C2P
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IInquiryService, InquiryService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connectionString = Configuration.GetSection("ConnectionStrings").GetValue<string>("DefaultConnection");

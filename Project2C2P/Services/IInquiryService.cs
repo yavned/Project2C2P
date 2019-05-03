@@ -9,6 +9,6 @@ namespace Project2C2P.Services
     public interface IInquiryService
     {
         Task<InquiryView> GetByCustomerID(long customerID);
-        Task<InquiryView> GetByemail(string email);
+        Task<InquiryView> GetByEmail(string email);
     }
 }
